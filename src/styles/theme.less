@@ -1,2 +1,54 @@
 // 可以通过 https://ng-alain.github.io/ng-alain/ 获取主题参数代码
 // The theme paraments can be generated at https://ng-alain.github.io/ng-alain/
+@import '~@delon/theme/styles/layout/default/index';
+
+@primary-color: #1ab394;
+@alain-default-header-bg: #18a689;
+@alain-default-header-hg: 60px;
+@alain-default-header-bg: rgb(243, 243, 244);
+@alain-default-aside-bg: #2f4050;
+@alain-default-aside-nav-selected-bg: #293846;
+@alain-default-aside-nav-selected-text-color: #ffffff;
+@alain-default-aside-wd: 220px;
+
+@{alain-default-prefix} {
+  &__header {
+    &-profile {
+      background-image: url("/assets/header-logo-backgroud.png");
+    }
+    &-logo {
+      width: 219px;
+      height: 60px;
+      margin: 0;
+    }
+  }
+  &__nav {
+    &-item,
+    nz-badge {
+      color: rgb(153, 156, 158);
+    }
+  }
+}
+
+.alain-default__aside {
+  margin-top: 0;
+}
+
+.alain-default__fixed .alain-default__header {
+  position: fixed;
+  left: 220px;
+}
+
+.alain-default__fixed.alain-default__collapsed .alain-default__header {
+  position: fixed;
+  left: 64px;
+}
+
+.alain-default__aside-user {
+  margin: auto;
+  padding: 24px 24px 0 24px;
+}
+
+.sidebar-nav__selected {
+  border-left-color: #19aa8d;
+}
