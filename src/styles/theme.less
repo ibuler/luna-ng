@@ -10,9 +10,11 @@
 @alain-default-aside-nav-selected-bg: #293846;
 @alain-default-aside-nav-selected-text-color: #ffffff;
 @alain-default-aside-wd: 220px;
+@alain-default-aside-collapsed-wd: 64px;
 
 @{alain-default-prefix} {
   &__header {
+    width: calc(100% - 220px);
     &-profile {
       background-image: url("/assets/header-logo-backgroud.png");
     }
@@ -30,18 +32,42 @@
   }
 }
 
+.@{sidebar-nav-prefix-cls} {
+  &__item {
+    position: relative;
+    display: block;
+    border-left: 3px solid transparent;
+    transition: border-left-color 0.4s ease;
+    &-link {
+      display: block;
+      padding: 14px 20px 14px 25px;
+      color: #a7b1c2;
+      font-weight: 600;
+      &:hover {
+        color: white;
+        background-color: #293846;
+      }
+    }
+  }
+  &__open {
+    background: #293846;
+    border-left: 4px solid #19aa8d;
+  }
+}
+
 .alain-default__aside {
   margin-top: 0;
 }
 
 .alain-default__fixed .alain-default__header {
   position: fixed;
-  left: 220px;
+  left: @alain-default-aside-wd;
 }
 
 .alain-default__fixed.alain-default__collapsed .alain-default__header {
   position: fixed;
-  left: 64px;
+  left: @alain-default-aside-collapsed-wd;
+  width: calc(100% - @alain-default-aside-collapsed-wd);
 }
 
 .alain-default__aside-user {
@@ -51,4 +77,11 @@
 
 .sidebar-nav__selected {
   border-left-color: #19aa8d;
+}
+
+.alain-default__aside-namespace {
+  display: block;
+  padding: 14px 20px 14px 25px;
+  color: #8095a8;
+  background-color: transparent;
 }
