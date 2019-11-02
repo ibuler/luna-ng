@@ -2,25 +2,44 @@ import { MockRequest } from '@delon/mock';
 
 const list: any[] = [];
 const total = 50;
+const initialId = 'bac02483-ce49-4895-a634-3b1fad80df';
+
+function padNumber(num, fill) {
+  //改自：http://blog.csdn.net/aimingoo/article/details/4492592
+  var len = ('' + num).length;
+  return (Array(
+    fill > len ? fill - len + 1 || 0 : 0
+  ).join('0') + num);
+}
 
 for (let i = 0; i < total; i += 1) {
+  var ii = padNumber(i, 2);
+  const id = initialId + ii;
   list.push({
-    id: i + 1,
-    disabled: i % 6 === 0,
-    href: 'https://ant.design',
-    avatar: [
-      'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
-      'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
-    ][i % 2],
-    no: `TradeCode ${i}`,
-    title: `一个任务名称 ${i}`,
-    owner: '曲丽丽',
-    description: '这是一段描述',
-    callNo: Math.floor(Math.random() * 1000),
-    status: Math.floor(Math.random() * 10) % 4,
-    updatedAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
-    createdAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
-    progress: Math.ceil(Math.random() * 100),
+    id: id,
+    avatar_url: "/asset/img/avatar/admin.png",
+    can_delete: false,
+    can_update: true,
+    comment: "",
+    created_by: "",
+    date_expired: "2089-10-10 22:53:39 +0800",
+    date_password_last_updated: "2019-10-28 22:53:40 +0800",
+    email: "admin@mycomany.com",
+    groups: ["4a17d31e-eada-4866-b686-33fe9cb28246"],
+    groups_display: "Default",
+    is_active: true,
+    is_expired: false,
+    is_first_login: false,
+    is_valid: true,
+    name: "Administrator",
+    otp_level: 0,
+    phone: null,
+    role: ["Admin", "User"][i%2],
+    role_display: ["管理员", "用户"][i%2],
+    source: "local",
+    source_display: "Local",
+    username: "admin",
+    wechat: ""
   });
 }
 
@@ -45,7 +64,7 @@ function saveData(id: number, value: any) {
 }
 
 export const USERS = {
-  '/user': (req: MockRequest) => genData(req.queryString),
+  '/api/v1/users/users/': (req: MockRequest) => genData(req.queryString),
   '/user/:id': (req: MockRequest) => list.find(w => w.id === +req.params.id),
   'POST /user/:id': (req: MockRequest) => saveData(+req.params.id, req.body),
   '/user/current': {
