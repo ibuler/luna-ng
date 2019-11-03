@@ -40,7 +40,7 @@ const REUSETAB_PROVIDES = [
 
 // #region global config functions
 
-import { PageHeaderConfig } from '@delon/abc';
+import { PageHeaderConfig, STData } from '@delon/abc';
 export function fnPageHeaderConfig(): PageHeaderConfig {
   return {
     ...new PageHeaderConfig(),
@@ -60,8 +60,13 @@ export function fnDelonAuthConfig(): DelonAuthConfig {
 import { STConfig } from '@delon/abc';
 export function fnSTConfig(): STConfig {
   return {
-    ...new STConfig(),
-    modal: { size: 'lg' },
+    ...Object.assign(new STConfig(), {
+      bordered: true,
+      size: "small",
+      ps: 15,
+      rowClassName: (record: STData, index: number) => ["odd", ""][index%2],
+    }),
+    modal: { size: 'lg'},
   };
 }
 
