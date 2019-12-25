@@ -9,14 +9,13 @@ import { SFSchema } from '@delon/form';
 })
 export class UsersUserListComponent implements OnInit {
   url = `/api/v1/users/users/`;
-  searchSchema: SFSchema = {
-    properties: {
-      no: {
-        type: 'string',
-        title: 'name'
-      }
-    }
-  };
+  filterNZSpan = 6;
+  filterNZOffset = 12;
+  filterCondition = [
+    {title: '姓名: 广宏伟', keyTitle: '姓名', key: 'name', valueTitle: "广宏伟", value: "广宏伟", type: "string"},
+    {title: '角色: 管理员', keyTitle: '姓名', key: 'name', valueTitle: "广宏伟", value: "广宏伟", type: "string"},
+  ];
+
   @ViewChild('st', { static: false }) st: STComponent;
   columns: STColumn[] = [
     { title: '', type: "checkbox" },
@@ -52,6 +51,10 @@ export class UsersUserListComponent implements OnInit {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+  }
+
+  removeCondition(i) {
+    this.filterCondition.splice(i, 1)
   }
 
 }

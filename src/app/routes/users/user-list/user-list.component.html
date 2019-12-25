@@ -1,7 +1,7 @@
 <page-header></page-header>
 <nz-card>
-  <div class="action-row" style="padding-bottom: 10px">
-    <div>
+  <div class="action-row" nz-row style="padding-bottom: 10px">
+    <div nz-col nzSpan="6">
       <nz-button-group>
         <button nz-button nzType="primary">新建资产</button>
         <button nz-button nzType="primary" nz-dropdown [nzDropdownMenu]="menu3" nzTrigger="click" nzPlacement="bottomLeft">
@@ -10,25 +10,21 @@
       </nz-button-group>
     </div>
 
-    <div style="margin-bottom: 16px;">
-      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-        <input type="text" nz-input  />
-      </nz-input-group>
-      <ng-template #addOnBeforeTemplate>
-        <nz-select [nzDropdownMatchSelectWidth]="false">
-          <nz-option  style="width: 60px" [nzLabel]="'Http://'" [nzValue]="'Http://'"></nz-option>
-          <nz-option  style="width: 60px" [nzLabel]="'Https://'" [nzValue]="'Https://'"></nz-option>
-        </nz-select>
-      </ng-template>
+    <div nz-col [nzOffset]="filterNZOffset" [nzSpan]="filterNZSpan" style="border: 1px solid #DDD;">
+      <div class="filter-content" style="display: flex; width: 100%;">
+        <span style="padding: 5px">
+          <i nz-icon nzType="search" nz-tooltip nzTitle="搜索"></i>
+        </span>
+        <span class="filter-condition" style="display: flex;padding: 5px 0 5px 0">
+          <nz-tag *ngFor="let tag of filterCondition; let i = index" (nzOnClose)="removeCondition(i)" nzMode="closeable" style="display: flex">{{ tag.title }}</nz-tag>
+        </span>
+        <input type="text" nz-input placeholder="搜索" style="border: none"  />
+        <span style="padding: 5px">
+          <i nz-icon nz-tooltip nzTitle="清空" nzType="close-circle"></i>
+        </span>
+      </div>
     </div>
-    <nz-dropdown-menu #menu3="nzDropdownMenu">
-      <ul nz-menu>
-        <li nz-menu-item>menu3 1st menu item</li>
-        <li nz-menu-item>menu3 2nd menu item</li>
-        <li nz-menu-item>menu3 3rd menu item</li>
-      </ul>
-    </nz-dropdown-menu>
   </div>
-  <!--<sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>-->
+  <!--<sf mode="search" [schema]="searchSchema" [layout]="'inline'" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>-->
   <st #st [data]="url" [columns]="columns"></st>
 </nz-card>
